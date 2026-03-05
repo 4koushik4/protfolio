@@ -13,7 +13,18 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        orbitron: ["Orbitron", "sans-serif"],
+        "space-grotesk": ["Space Grotesk", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
+      },
       colors: {
+        neon: {
+          cyan: "#00ffff",
+          purple: "#a855f7",
+          blue: "#3b82f6",
+          magenta: "#ec4899",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
