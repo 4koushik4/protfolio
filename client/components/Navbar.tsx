@@ -1,4 +1,4 @@
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, Github, Linkedin, Mail, Cpu } from "lucide-react";
