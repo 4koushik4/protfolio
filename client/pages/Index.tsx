@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
-import { ArrowRight, Github, ExternalLink, Award, Code, Briefcase, Zap } from "lucide-react";
+import { ArrowRight, Github, ExternalLink, Award, Code, Briefcase, Zap, Mail, Linkedin } from "lucide-react";
 
 export default function Index() {
   return (
