@@ -2,52 +2,66 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export const BackgroundEffects = () => {
-  const [particles, setParticles] = useState<{ id: number; x: number; y: number; size: number; color: string }[]>([]);
+  const [particles, setParticles] = useState<{ id: number; x: number; y: number; size: number; color: string; duration: number }[]>([]);
 
   useEffect(() => {
     const colors = ["#00ffff", "#a855f7", "#3b82f6", "#ec4899"];
-    const newParticles = Array.from({ length: 40 }).map((_, i) => ({
+    const newParticles = Array.from({ length: 60 }).map((_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 3 + 1,
+      size: Math.random() * 2 + 0.5,
       color: colors[Math.floor(Math.random() * colors.length)],
+      duration: Math.random() * 10 + 10,
     }));
     setParticles(newParticles);
   }, []);
 
   return (
-    <div className="fixed inset-0 -z-50 overflow-hidden pointer-events-none">
-      {/* Grid Background */}
+    <div className="fixed inset-0 -z-50 overflow-hidden pointer-events-none bg-black">
+      {/* Animated Mesh Gradient */}
+      <motion.div 
+        animate={{
+          scale: [1, 1.1, 1],
+          opacity: [0.3, 0.5, 0.3],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "linear"
+        }}
+        className="absolute inset-0 bg-mesh-gradient opacity-40 blur-[100px]"
+      />
+
+      {/* Dynamic Neon Grid */}
       <div 
         className="absolute inset-0 opacity-[0.15]"
         style={{
           backgroundImage: `
-            linear-gradient(to right, #00ffff 1px, transparent 1px),
-            linear-gradient(to bottom, #00ffff 1px, transparent 1px)
+            linear-gradient(to right, rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0, 255, 255, 0.1) 1px, transparent 1px)
           `,
-          backgroundSize: "40px 40px",
+          backgroundSize: "80px 80px",
           maskImage: "radial-gradient(circle at 50% 50%, black, transparent 80%)"
         }}
-      />
+      >
+        <motion.div 
+           animate={{
+             y: [0, 80],
+           }}
+           transition={{
+             duration: 5,
+             repeat: Infinity,
+             ease: "linear",
+           }}
+           className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-transparent h-[160px]"
+        />
+      </div>
 
-      {/* Animated Gradients */}
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.1, 0.2, 0.1],
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-neon-purple rounded-full blur-[120px]"
-      />
-      <motion.div
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.1, 0.2, 0.1],
-        }}
-        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-neon-cyan rounded-full blur-[120px]"
-      />
+      {/* Parallax Layer 1 (Large slow orbs) */}
+      <Orb x="-20%" y="-20%" color="rgba(0, 255, 255, 0.1)" duration={25} size="600px" />
+      <Orb x="70%" y="60%" color="rgba(168, 85, 247, 0.1)" duration={30} size="500px" />
+      <Orb x="40%" y="20%" color="rgba(59, 130, 246, 0.05)" duration={22} size="700px" />
 
       {/* Floating Particles */}
       {particles.map((p) => (
@@ -63,55 +77,53 @@ export const BackgroundEffects = () => {
             boxShadow: `0 0 10px ${p.color}`,
           }}
           animate={{
-            y: [0, -40, 0],
-            x: [0, Math.random() * 20 - 10, 0],
-            opacity: [0.4, 0.8, 0.4],
+            y: [0, -100, 0],
+            x: [0, Math.random() * 50 - 25, 0],
+            opacity: [0.2, 0.6, 0.2],
+            scale: [1, 1.5, 1],
           }}
           transition={{
-            duration: Math.random() * 5 + 5,
+            duration: p.duration,
             repeat: Infinity,
             ease: "easeInOut",
           }}
         />
       ))}
+      
+      {/* Light Beams / Glow Waves */}
+      <motion.div 
+        animate={{
+          x: ["-100%", "200%"],
+          opacity: [0, 0.2, 0],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent rotate-45 pointer-events-none"
+      />
     </div>
   );
 };
 
-export const CustomCursor = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isPointer, setIsPointer] = useState(false);
+const Orb = ({ x, y, color, duration, size }: { x: string; y: string; color: string; duration: number; size: string }) => (
+  <motion.div
+    animate={{
+      x: [0, 100, 0],
+      y: [0, 50, 0],
+      scale: [1, 1.2, 1],
+    }}
+    transition={{ duration, repeat: Infinity, ease: "easeInOut" }}
+    className="absolute rounded-full blur-[120px] pointer-events-none"
+    style={{ 
+      left: x, 
+      top: y, 
+      width: size, 
+      height: size, 
+      backgroundColor: color 
+    }}
+  />
+);
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-      const target = e.target as HTMLElement;
-      setIsPointer(window.getComputedStyle(target).cursor === "pointer");
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
-  return (
-    <>
-      <motion.div
-        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-primary pointer-events-none z-[9999] mix-blend-difference"
-        animate={{
-          x: mousePosition.x - 16,
-          y: mousePosition.y - 16,
-          scale: isPointer ? 1.5 : 1,
-        }}
-        transition={{ type: "spring", stiffness: 500, damping: 28, mass: 0.5 }}
-      />
-      <motion.div
-        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-primary pointer-events-none z-[9999] shadow-[0_0_10px_#00ffff]"
-        animate={{
-          x: mousePosition.x - 4,
-          y: mousePosition.y - 4,
-        }}
-        transition={{ type: "spring", stiffness: 1000, damping: 40, mass: 0.1 }}
-      />
-    </>
-  );
-};
+export const CustomCursor = () => null; // Removed as requested

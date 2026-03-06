@@ -67,27 +67,79 @@
     @apply text-primary drop-shadow-[0_0_8px_rgba(0,255,255,0.8)];
   }
 
-  .neon-glow-blue {
-    @apply shadow-[0_0_20px_rgba(59,130,246,0.5)];
+  .neon-glow-cyan {
+    @apply shadow-[0_0_15px_rgba(0,255,255,0.4),0_0_30px_rgba(0,255,255,0.2),0_0_45px_rgba(0,255,255,0.1)];
   }
 
   .neon-glow-purple {
-    @apply shadow-[0_0_20px_rgba(168,85,247,0.5)];
-  }
-
-  .neon-glow-cyan {
-    @apply shadow-[0_0_20px_rgba(0,255,255,0.5)];
+    @apply shadow-[0_0_15px_rgba(168,85,247,0.4),0_0_30px_rgba(168,85,247,0.2),0_0_45px_rgba(168,85,247,0.1)];
   }
 
   .neon-glow-magenta {
-    @apply shadow-[0_0_20px_rgba(236,72,153,0.5)];
+    @apply shadow-[0_0_15px_rgba(236,72,153,0.4),0_0_30px_rgba(236,72,153,0.2),0_0_45px_rgba(236,72,153,0.1)];
+  }
+
+  .neon-glow-blue {
+    @apply shadow-[0_0_15px_rgba(59,130,246,0.4),0_0_30px_rgba(59,130,246,0.2),0_0_45px_rgba(59,130,246,0.1)];
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { opacity: 0.6; filter: blur(5px); }
+    50% { opacity: 1; filter: blur(2px); }
+  }
+
+  .glass-premium {
+    @apply bg-white/5 backdrop-blur-[20px] border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)];
+  }
+
+  .text-glow {
+    @apply drop-shadow-[0_0_10px_rgba(0,255,255,0.8)] drop-shadow-[0_0_20px_rgba(0,255,255,0.4)];
+  }
+
+  .hover-lift {
+    @apply transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)];
+  }
+
+  .neon-text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+  }
+
+  .border-gradient {
+    position: relative;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .border-gradient::after {
+    content: "";
+    position: absolute;
+    top: -1px;
+    bottom: -1px;
+    left: -1px;
+    right: -1px;
+    background: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--accent)));
+    z-index: -1;
+    border-radius: inherit;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-[0_0_25px_rgba(0,255,255,0.6)];
+  }
+
+  .bg-cyber-grid {
+    background-image: linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
-    cursor: none !important;
   }
 
   body {
