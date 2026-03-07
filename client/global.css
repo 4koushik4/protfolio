@@ -6,108 +6,161 @@
 @tailwind utilities;
 
 @layer base {
-  /**
-   * Tailwind CSS theme
-   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
-   * A different format will require also updating the theme in tailwind.config.ts.
-  */
   :root {
-    --background: 240 10% 3.9%;
+    --background: 245 40% 6%;
     --foreground: 0 0% 98%;
-
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
-
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
-
-    --primary: 180 100% 50%; /* Cyan */
+    --primary: 180 100% 50%;
     --primary-foreground: 240 5.9% 10%;
-
-    --secondary: 270 100% 65%; /* Purple */
+    --secondary: 270 100% 65%;
     --secondary-foreground: 0 0% 98%;
-
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
-
-    --accent: 330 100% 60%; /* Magenta */
+    --accent: 330 100% 60%;
     --accent-foreground: 0 0% 98%;
-
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 180 100% 50%;
-
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
+    --background: 245 40% 6%;
     --foreground: 0 0% 98%;
-    /* No change since we're using dark by default */
   }
 }
 
 @layer components {
+  /* ── Glassmorphism ── */
   .glass {
-    @apply bg-black/40 backdrop-blur-md border border-white/10;
+    @apply bg-white/[0.06] backdrop-blur-md border border-white/10;
   }
 
   .glass-card {
-    @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-2xl;
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl;
   }
 
+  .glass-premium {
+    @apply bg-white/[0.03] backdrop-blur-[24px] border border-white/[0.08];
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .glass-premium:hover {
+    @apply border-white/[0.15];
+    box-shadow:
+      0 12px 48px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(0, 255, 255, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  /* ── Neon Borders & Glows ── */
   .neon-border {
-    @apply border border-primary shadow-[0_0_15px_rgba(0,255,255,0.4)];
+    @apply border border-primary;
+    box-shadow:
+      0 0 8px rgba(0, 255, 255, 0.25),
+      0 0 16px rgba(0, 255, 255, 0.1);
   }
 
   .neon-text {
-    @apply text-primary drop-shadow-[0_0_8px_rgba(0,255,255,0.8)];
+    @apply text-primary;
+    text-shadow:
+      0 0 6px rgba(0, 255, 255, 0.5),
+      0 0 12px rgba(0, 255, 255, 0.2);
   }
 
   .neon-glow-cyan {
-    @apply shadow-[0_0_15px_rgba(0,255,255,0.4),0_0_30px_rgba(0,255,255,0.2),0_0_45px_rgba(0,255,255,0.1)];
+    box-shadow:
+      0 0 8px rgba(0, 255, 255, 0.3),
+      0 0 16px rgba(0, 255, 255, 0.15);
   }
 
   .neon-glow-purple {
-    @apply shadow-[0_0_15px_rgba(168,85,247,0.4),0_0_30px_rgba(168,85,247,0.2),0_0_45px_rgba(168,85,247,0.1)];
+    box-shadow:
+      0 0 8px rgba(168, 85, 247, 0.3),
+      0 0 16px rgba(168, 85, 247, 0.15);
   }
 
   .neon-glow-magenta {
-    @apply shadow-[0_0_15px_rgba(236,72,153,0.4),0_0_30px_rgba(236,72,153,0.2),0_0_45px_rgba(236,72,153,0.1)];
+    box-shadow:
+      0 0 8px rgba(236, 72, 153, 0.3),
+      0 0 16px rgba(236, 72, 153, 0.15);
   }
 
   .neon-glow-blue {
-    @apply shadow-[0_0_15px_rgba(59,130,246,0.4),0_0_30px_rgba(59,130,246,0.2),0_0_45px_rgba(59,130,246,0.1)];
+    box-shadow:
+      0 0 8px rgba(59, 130, 246, 0.3),
+      0 0 16px rgba(59, 130, 246, 0.15);
   }
 
+  /* ── Glow Pulse ── */
   .animate-glow-pulse {
     animation: glow-pulse 4s ease-in-out infinite;
   }
 
   @keyframes glow-pulse {
-    0%, 100% { opacity: 0.6; filter: blur(5px); }
-    50% { opacity: 1; filter: blur(2px); }
+    0%, 100% { opacity: 0.5; filter: blur(6px); }
+    50% { opacity: 1; filter: blur(1px); }
   }
 
-  .glass-premium {
-    @apply bg-white/5 backdrop-blur-[20px] border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)];
+  /* ── Neon Breathe – slow glow for key UI elements ── */
+  .animate-neon-breathe {
+    animation: neon-breathe 3s ease-in-out infinite;
   }
 
+  @keyframes neon-breathe {
+    0%, 100% {
+      box-shadow: 0 0 4px rgba(0, 255, 255, 0.2);
+    }
+    50% {
+      box-shadow: 0 0 8px rgba(0, 255, 255, 0.35), 0 0 16px rgba(0, 255, 255, 0.15);
+    }
+  }
+
+  /* ── Text Glow – layered drop-shadows ── */
   .text-glow {
-    @apply drop-shadow-[0_0_10px_rgba(0,255,255,0.8)] drop-shadow-[0_0_20px_rgba(0,255,255,0.4)];
+    text-shadow:
+      0 0 6px rgba(0, 255, 255, 0.4),
+      0 0 12px rgba(0, 255, 255, 0.15);
   }
 
-  .hover-lift {
-    @apply transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)];
+  .text-glow-purple {
+    text-shadow:
+      0 0 6px rgba(168, 85, 247, 0.4),
+      0 0 12px rgba(168, 85, 247, 0.15);
   }
 
+  /* ── Gradient Text ── */
   .neon-text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+    background-size: 200% 200%;
+    animation: gradient-shift 6s ease infinite;
   }
 
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* ── Hover Lift ── */
+  .hover-lift {
+    @apply transition-all duration-500 hover:-translate-y-2;
+    &:hover {
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(0, 255, 255, 0.05);
+    }
+  }
+
+  /* ── Gradient Border ── */
   .border-gradient {
     position: relative;
     border: 1px solid transparent;
@@ -121,19 +174,179 @@
     bottom: -1px;
     left: -1px;
     right: -1px;
-    background: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--accent)));
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--accent)));
+    background-size: 300% 300%;
+    animation: gradient-shift 6s ease infinite;
     z-index: -1;
     border-radius: inherit;
   }
 
   .hover-glow {
-    @apply transition-all duration-300 hover:shadow-[0_0_25px_rgba(0,255,255,0.6)];
+    @apply transition-all duration-300;
+    &:hover {
+      box-shadow:
+        0 0 15px rgba(0, 255, 255, 0.5),
+        0 0 30px rgba(0, 255, 255, 0.25);
+    }
   }
 
+  /* ── Cyber Grid ── */
   .bg-cyber-grid {
-    background-image: linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 50px 50px;
+    background-image:
+      linear-gradient(rgba(0, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* ── Animated Gradient Border for Buttons ── */
+  .btn-gradient-border {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .btn-gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, #00ffff, #a855f7, #ec4899, #00ffff);
+    background-size: 400% 400%;
+    animation: gradient-shift 4s ease infinite;
+    z-index: -1;
+    opacity: 0.6;
+    transition: opacity 0.5s;
+  }
+
+  .btn-gradient-border:hover::before {
+    opacity: 1;
+  }
+
+  .btn-gradient-border::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: hsl(var(--background));
+    z-index: -1;
+  }
+
+  /* ── Ripple Click ── */
+  .ripple-click {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ripple-click::after {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.3) 0%, transparent 60%);
+    border-radius: 50%;
+    opacity: 0;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+  }
+
+  .ripple-click:active::after {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    transition: 0s;
+  }
+
+  /* ── Section Divider ── */
+  .section-divider {
+    position: relative;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.4), rgba(168, 85, 247, 0.4), transparent);
+    overflow: hidden;
+  }
+
+  .section-divider::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    animation: divider-sweep 3s ease-in-out infinite;
+    transform: translateX(-100%);
+  }
+
+  @keyframes divider-sweep {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  /* ── Floating animation ── */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .animate-float-slow {
+    animation: float 10s ease-in-out infinite;
+  }
+
+  /* ── Neon Flicker – for loading text ── */
+  .animate-neon-flicker {
+    animation: neon-flicker 3s ease-in-out infinite;
+  }
+
+  @keyframes neon-flicker {
+    0%, 100% { opacity: 1; }
+    5% { opacity: 0.4; }
+    10% { opacity: 1; }
+    15% { opacity: 0.6; }
+    20% { opacity: 1; }
+    50% { opacity: 1; }
+    55% { opacity: 0.3; }
+    56% { opacity: 1; }
+  }
+
+  /* ── Scanline (subtle CRT effect) ── */
+  .scanline-overlay {
+    display: none;
+  }
+
+  /* ── Focus Glow for inputs ── */
+  input:focus, textarea:focus {
+    box-shadow:
+      0 0 0 1px rgba(0, 255, 255, 0.3),
+      0 0 15px rgba(0, 255, 255, 0.15),
+      0 0 30px rgba(0, 255, 255, 0.05);
+  }
+
+  /* ── Progress Bar Glow ── */
+  .progress-glow {
+    box-shadow:
+      0 0 6px rgba(0, 255, 255, 0.4);
+  }
+
+  /* ── Animated mesh-gradient background ── */
+  .bg-mesh-gradient {
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(0, 255, 255, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, rgba(236, 72, 153, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 90%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+  }
+
+  /* ── Animated gradient background ── */
+  .animate-gradient-bg {
+    animation: gradient-bg 20s ease infinite;
+  }
+
+  @keyframes gradient-bg {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 50% 100%; }
+    50% { background-position: 100% 50%; }
+    75% { background-position: 50% 0%; }
+    100% { background-position: 0% 50%; }
   }
 }
 
@@ -145,8 +358,8 @@
   body {
     @apply bg-background text-foreground font-space-grotesk overflow-x-hidden;
     background-image:
-      radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 0% 0%, rgba(168, 85, 247, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.06) 0%, transparent 50%),
+      radial-gradient(circle at 0% 0%, rgba(168, 85, 247, 0.06) 0%, transparent 50%),
       radial-gradient(circle at 100% 100%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
   }
 
@@ -157,13 +370,23 @@
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-black;
+  background: #0f0c29;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-primary/30 rounded-full hover:bg-primary/50 transition-colors;
+  background: linear-gradient(180deg, rgba(0, 255, 255, 0.3), rgba(168, 85, 247, 0.3));
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(0, 255, 255, 0.6), rgba(168, 85, 247, 0.6));
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
 }

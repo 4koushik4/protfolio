@@ -14,7 +14,7 @@ export const usePortfolio = () => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.ctrlKey && e.shiftKey && e.key === "K") {
         e.preventDefault();
-        setIsAdminOpen(true);
+        setIsAdminOpen((prev) => !prev);
       }
     };
 
@@ -29,7 +29,7 @@ export const usePortfolio = () => {
 
   const login = (password: string) => {
     // Simple mock password
-    if (password === "admin123") {
+    if (password === "BKhs@4444") {
       setIsLoggedIn(true);
       return true;
     }
