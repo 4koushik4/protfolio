@@ -55,8 +55,8 @@ const MagneticButton = ({ children, className, onClick, variant = "primary" }: {
       className={cn(
         "relative overflow-hidden px-8 py-3 rounded-full font-bold uppercase tracking-wider transition-all group ripple-click",
         variant === "primary"
-          ? "btn-gradient-border bg-primary text-primary-foreground shadow-[0_0_10px_rgba(0,255,255,0.15)] hover:shadow-[0_0_20px_rgba(0,255,255,0.3)]"
-          : "btn-gradient-border text-secondary hover:bg-secondary/10",
+          ? "btn-vibrant-primary"
+          : "btn-vibrant-secondary",
         className
       )}
     >
@@ -148,10 +148,10 @@ const Hero = ({ data }: { data: any }) => {
       <motion.div
         animate={{
           background: [
-            "radial-gradient(ellipse at 30% 40%, rgba(0,255,255,0.08) 0%, transparent 60%)",
-            "radial-gradient(ellipse at 70% 60%, rgba(168,85,247,0.08) 0%, transparent 60%)",
-            "radial-gradient(ellipse at 50% 30%, rgba(236,72,153,0.06) 0%, transparent 60%)",
-            "radial-gradient(ellipse at 30% 40%, rgba(0,255,255,0.08) 0%, transparent 60%)",
+            "radial-gradient(ellipse at 30% 40%, rgba(255,0,204,0.12) 0%, transparent 60%)",
+            "radial-gradient(ellipse at 70% 60%, rgba(0,234,255,0.12) 0%, transparent 60%)",
+            "radial-gradient(ellipse at 50% 30%, rgba(255,138,0,0.1) 0%, transparent 60%)",
+            "radial-gradient(ellipse at 30% 40%, rgba(255,0,204,0.12) 0%, transparent 60%)",
           ],
         }}
         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
@@ -179,11 +179,11 @@ const Hero = ({ data }: { data: any }) => {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="relative mb-10"
         >
-          <div className="w-40 h-40 rounded-[2rem] p-1.5 relative group">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-accent animate-spin-slow rounded-[2.2rem] opacity-20 blur-lg group-hover:opacity-50 transition-opacity duration-700" />
-            <div className="absolute inset-0 border border-primary/15 rounded-[2rem]" />
+          <div className="w-40 h-40 rounded-[2rem] p-1.5 relative group glow-pulse-avatar">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#00ffff] via-[#a855f7] to-[#ff00cc] animate-spin-slow rounded-[2.2rem] opacity-30 blur-lg group-hover:opacity-70 transition-opacity duration-700" />
+            <div className="absolute inset-0 border border-white/20 rounded-[2rem]" />
             <div className="w-full h-full rounded-[1.8rem] bg-black border border-white/10 flex items-center justify-center overflow-hidden relative z-10">
-               <img src="https://i.ibb.co/ym7TLL0z/profile.jpg" alt="Profile" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" />
+               <img src="https://i.ibb.co/ym7TLL0z/profile.jpg" alt="Profile" className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700" />
             </div>
           </div>
         </motion.div>
@@ -209,7 +209,7 @@ const Hero = ({ data }: { data: any }) => {
                    delay: 0.1 + i * 0.025,
                    ease: [0.22, 1, 0.36, 1]
                  }}
-                 className="inline-block text-glow"
+                 className="inline-block text-gradient-vibrant text-glow"
                >
                  {char === " " ? "\u00A0" : char}
                </motion.span>
@@ -221,10 +221,10 @@ const Hero = ({ data }: { data: any }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-primary font-space-grotesk mb-8 max-w-2xl leading-relaxed font-bold uppercase tracking-[0.2em] text-sm flex items-center gap-3 bg-white/[0.03] px-6 py-2.5 rounded-full border border-white/[0.08] backdrop-blur-lg"
+          className="font-space-grotesk mb-8 max-w-2xl leading-relaxed font-bold uppercase tracking-[0.2em] text-sm flex items-center gap-3 bg-white/[0.05] px-6 py-2.5 rounded-full border border-white/[0.1] backdrop-blur-lg"
         >
-          <span className="w-2 h-2 rounded-full bg-primary animate-ping" />
-          {data.tagline}
+          <span className="w-2 h-2 rounded-full bg-[#00ffff] animate-ping" />
+          <span className="text-gradient-vibrant">{data.tagline}</span>
         </motion.div>
 
         <motion.div
@@ -394,7 +394,13 @@ const SkillsSection = ({ categories }: { categories: any[] }) => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4, delay: i * 0.05 }}
             viewport={{ once: true }}
-            className="glass-premium p-8 rounded-2xl group"
+            className={cn(
+              "glass-premium p-8 rounded-2xl group transition-all duration-500",
+              i % 4 === 0 ? "skill-card-glow-cyan" :
+              i % 4 === 1 ? "skill-card-glow-purple" :
+              i % 4 === 2 ? "skill-card-glow-pink" :
+              "skill-card-glow-orange"
+            )}
           >
             <h4 className="font-orbitron font-bold text-xl mb-8 uppercase tracking-wider text-primary flex items-center gap-4">
               <div className="w-2 h-8 bg-primary rounded-full animate-glow-pulse" />
@@ -471,11 +477,11 @@ const ProjectCard = ({ project, i }: { project: any; i: number }) => {
       )}
     >
       {/* Animated gradient border */}
-      <div className="absolute inset-0 rounded-2xl opacity-40 group-hover:opacity-80 transition-opacity duration-700 -z-[1]" style={{
-        background: "linear-gradient(135deg, #00ffff, #a855f7, #ec4899, #3b82f6)",
+      <div className="absolute inset-0 rounded-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-700 -z-[1]" style={{
+        background: "linear-gradient(135deg, #00ffff, #a855f7, #ec4899, #3b82f6, #ff8a00)",
         backgroundSize: "300% 300%",
         animation: "gradient-shift 4s ease infinite",
-        padding: "1px",
+        padding: "2px",
         mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
         maskComposite: "exclude",
         WebkitMaskComposite: "xor",
@@ -483,7 +489,7 @@ const ProjectCard = ({ project, i }: { project: any; i: number }) => {
       <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0"
         style={{
-          background: `radial-gradient(circle at ${glowPos.x}% ${glowPos.y}%, rgba(0,255,255,0.08) 0%, transparent 50%)`,
+          background: `radial-gradient(circle at ${glowPos.x}% ${glowPos.y}%, rgba(0,255,255,0.15) 0%, transparent 50%)`,
         }}
       />
       <div className={cn("h-48 bg-gradient-to-br relative flex items-center justify-center overflow-hidden", project.color)}>
@@ -571,10 +577,10 @@ const ExperienceSection = ({ internships }: { internships: any[] }) => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true }}
-            className="relative pl-16 pb-20 border-l-2 border-primary/20 last:pb-0 group"
+            className="relative pl-16 pb-20 border-l-4 border-gradient last:pb-0 group"
           >
-            <div className="absolute left-[-14px] top-0 w-6 h-6 rounded-full bg-black border-2 border-primary shadow-[0_0_12px_rgba(0,255,255,0.6)] z-10 flex items-center justify-center">
-               <div className="w-2 h-2 bg-primary rounded-full animate-ping" />
+            <div className="absolute left-[-16px] top-0 w-8 h-8 rounded-full bg-black border-2 border-primary shadow-[0_0_25px_rgba(0,255,255,1)] z-10 flex items-center justify-center">
+               <div className="w-3 h-3 bg-primary rounded-full animate-ping shadow-[0_0_10px_#0ff]" />
             </div>
             
             <div className="glass-premium p-10 rounded-2xl relative overflow-hidden group hover:border-primary/40 transition-all duration-700">
@@ -788,7 +794,7 @@ const SectionHeader = ({ title, subtitle, align = "left" }: { title: string; sub
       >
         // {subtitle}
       </motion.span>
-      <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2.5rem)' }} className="font-black font-orbitron uppercase tracking-tight leading-none relative inline-block group">
+      <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2.5rem)' }} className="font-black font-orbitron uppercase tracking-tight leading-none relative inline-block group text-gradient-vibrant">
         {headerLetters.map((char, i) => (
           <motion.span
             key={i}
