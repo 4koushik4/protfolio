@@ -13,12 +13,12 @@ export const ContactSection = ({ profile }: { profile: any }) => {
       color: "cyan", 
       desc: "Reach out via standard mail"
     },
-    { 
-      name: "Telegram", 
-      value: "@koushikjuluri", 
-      href: "https://t.me/koushikjuluri", 
-      icon: <Send size={32} />, 
-      color: "purple", 
+    {
+      name: "Telegram",
+      value: `@${profile.telegram.toLowerCase()}`,
+      href: `https://t.me/${profile.telegram.toLowerCase()}`,
+      icon: <Send size={32} />,
+      color: "purple",
       desc: "Fastest response time"
     },
     { 

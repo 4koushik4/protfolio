@@ -56,6 +56,7 @@ export interface PortfolioData {
     phone: string;
     github: string;
     linkedin: string;
+    telegram: string;
     location: string;
   };
   education: Education[];
@@ -80,6 +81,7 @@ export const initialData: PortfolioData = {
     phone: "+91-7396098014",
     github: "https://github.com/4koushik4",
     linkedin: "https://linkedin.com/in/4koushik4",
+    telegram: "KOUSHIKJULURI",
     location: "Hyderabad, India",
   },
   education: [
