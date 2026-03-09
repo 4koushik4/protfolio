@@ -1,95 +1,82 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Github, Linkedin, Mail, Twitter, Code } from "lucide-react";
+import { Github, Linkedin, Mail, Twitter, Code, ExternalLink, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="py-16 relative overflow-hidden border-t border-white/[0.06] bg-[#0f0c29]/80 backdrop-blur-xl mt-16">
-      <div className="absolute inset-0 bg-cyber-grid opacity-[0.02] -z-10" />
+    <footer className="py-24 relative overflow-hidden border-t border-white/[0.05] bg-[#05050a]">
+      {/* Background patterns */}
+      <div className="absolute inset-0 tech-grid opacity-[0.03] -z-10" />
       
-      {/* Animated top border */}
+      {/* Animated top gradient line */}
       <motion.div
         animate={{ backgroundPosition: ["0% 50%", "200% 50%"] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
         className="absolute top-0 left-0 right-0 h-[1px]"
         style={{
-          background: "linear-gradient(90deg, transparent, #00ffff, #a855f7, #ec4899, transparent)",
+          background: "linear-gradient(90deg, transparent, #00ffff, #a855f7, #ff00cc, transparent)",
           backgroundSize: "200% 100%",
-          boxShadow: "0 0 8px rgba(0,255,255,0.15)",
         }}
       />
 
-      <div className="container px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 items-start">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="col-span-1 md:col-span-2"
-          >
-            <Link to="/" className="text-2xl font-bold font-orbitron neon-text-gradient mb-6 flex items-center gap-4 group">
-              <img 
-                src="https://i.ibb.co/21mHj556/logo.png" 
-                alt="Logo" 
-                className="h-10 w-auto rounded-xl"
-              />
-              KOUSHIK.DEV
+      <div className="container px-6 max-w-6xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20 items-start">
+          <div className="lg:col-span-2">
+            <Link to="/" className="group flex items-center gap-4 mb-8">
+              <div className="relative h-10 w-10 overflow-hidden rounded-lg border border-white/10 glass p-2 transition-all duration-500 group-hover:neon-glow-cyan">
+                 <img src="https://i.ibb.co/21mHj556/logo.png" alt="Logo" className="h-full w-full object-contain" />
+              </div>
+              <span className="font-orbitron text-xl font-black tracking-tighter text-gradient-futuristic uppercase">
+                KOUSHIK.JS
+              </span>
             </Link>
-            <p className="text-muted-foreground text-base max-w-md leading-relaxed mb-8">
-              Building innovative digital experiences through modern technologies and futuristic designs.
+            <p className="text-muted-foreground text-lg max-w-md leading-relaxed mb-10 font-medium">
+              Designing and building the next generation of digital experiences with a focus on <span className="text-white">clean code</span> and <span className="text-white">futuristic UI</span>.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <TechBadge name="React" delay={0} />
-              <TechBadge name="Tailwind" delay={0.1} />
-              <TechBadge name="Framer Motion" delay={0.2} />
-              <TechBadge name="Supabase" delay={0.3} />
+            <div className="flex gap-4">
+              <SocialBtn href="https://github.com/4koushik4" icon={<Github size={20} />} color="cyan" />
+              <SocialBtn href="https://linkedin.com/in/4koushik4" icon={<Linkedin size={20} />} color="purple" />
+              <SocialBtn href="mailto:juluribhavanikoushik@gmail.com" icon={<Mail size={20} />} color="pink" />
             </div>
-          </motion.div>
+          </div>
           
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
-            <h4 className="font-orbitron text-xs font-bold uppercase tracking-[0.4em] mb-6 text-primary flex items-center gap-3">
-              <Code className="w-4 h-4 opacity-50" /> Navigation
+          <div>
+            <h4 className="font-orbitron text-xs font-black uppercase tracking-[0.4em] mb-8 text-[#00ffff]/60 flex items-center gap-3">
+               Navigation
             </h4>
-            <ul className="space-y-4 text-muted-foreground font-bold tracking-wider uppercase text-xs">
+            <ul className="space-y-5">
               <li><FooterLink href="#hero" label="Home" /></li>
               <li><FooterLink href="#about" label="About" /></li>
               <li><FooterLink href="#projects" label="Projects" /></li>
               <li><FooterLink href="#contact" label="Contact" /></li>
             </ul>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <h4 className="font-orbitron text-xs font-bold uppercase tracking-[0.4em] mb-6 text-primary">
-              Connect
+          <div>
+            <h4 className="font-orbitron text-xs font-black uppercase tracking-[0.4em] mb-8 text-[#a855f7]/60">
+              Stack_Kernel
             </h4>
-            <div className="grid grid-cols-2 gap-3">
-              <SocialIcon href="https://github.com/4koushik4" icon={<Github />} label="GitHub" color="cyan" />
-              <SocialIcon href="https://linkedin.com/in/4koushik4" icon={<Linkedin />} label="LinkedIn" color="purple" />
-              <SocialIcon href="mailto:juluribhavanikoushik@gmail.com" icon={<Mail />} label="Email" color="magenta" />
-              <SocialIcon href="#" icon={<Twitter />} label="Twitter" color="blue" />
+            <div className="flex flex-wrap gap-2">
+              {["React", "TypeScript", "Node.js", "Tailwind", "Framer"].map((tech) => (
+                <span key={tech} className="px-3 py-1.5 glass rounded-lg text-[9px] font-black uppercase tracking-widest text-muted-foreground border border-white/5">
+                  {tech}
+                </span>
+              ))}
             </div>
-          </motion.div>
+          </div>
         </div>
 
-        <div className="pt-8 border-t border-white/[0.06] flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-muted-foreground text-center md:text-left">
-            © {new Date().getFullYear()} <span className="neon-text">KOUSHIK.DEV</span> | Designed & Developed with passion.
+        <div className="pt-10 border-t border-white/[0.05] flex flex-col md:flex-row justify-between items-center gap-8">
+          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground text-center md:text-left">
+            © {currentYear} <span className="text-white">KOUSHIK JULURI</span> • ESTABLISHED IN THE MATRIX
           </p>
-          <div className="flex items-center gap-4">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-primary/30">Active</span>
-            <div className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_6px_#0ff]" />
+          <div className="flex items-center gap-6">
+            <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground flex items-center gap-3">
+               Status: <span className="text-[#00ffff] flex items-center gap-2"><div className="h-1.5 w-1.5 rounded-full bg-[#00ffff] animate-ping shadow-[0_0_6px_#00ffff]" /> Operational</span>
+            </span>
           </div>
         </div>
       </div>
@@ -98,42 +85,33 @@ export const Footer = () => {
 };
 
 const FooterLink = ({ href, label }: { href: string; label: string }) => (
-  <a href={href} className="hover:text-primary transition-all duration-300 flex items-center gap-3 group">
-    <div className="w-1 h-1 rounded-full bg-white/10 group-hover:bg-primary group-hover:scale-150 transition-all duration-300 group-hover:shadow-[0_0_4px_#0ff]" />
+  <a 
+    href={href} 
+    onClick={(e) => {
+      e.preventDefault();
+      document.getElementById(href.replace('#', ''))?.scrollIntoView({ behavior: 'smooth' });
+    }}
+    className="text-muted-foreground hover:text-white transition-all duration-300 flex items-center gap-3 group text-sm font-bold uppercase tracking-widest"
+  >
+    <ArrowRight size={14} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#00ffff]" />
     {label}
   </a>
 );
 
-const TechBadge = ({ name, delay = 0 }: { name: string; delay?: number }) => (
-  <motion.span
-    initial={{ opacity: 0, scale: 0.9 }}
-    whileInView={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.4, delay }}
-    viewport={{ once: true }}
-    whileHover={{ scale: 1.05, y: -2 }}
-    className="px-4 py-2 glass rounded-lg text-[10px] font-bold uppercase tracking-wider text-muted-foreground border border-white/5 transition-all hover:border-primary/20 hover:text-primary"
-  >
-    {name}
-  </motion.span>
-);
-
-const SocialIcon = ({ href, icon, label, color }: any) => (
+const SocialBtn = ({ href, icon, color }: any) => (
   <motion.a 
     href={href} 
     target="_blank"
     rel="noopener"
-    whileHover={{ y: -4, scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
+    whileHover={{ y: -5, scale: 1.1 }}
+    whileTap={{ scale: 0.9 }}
     className={cn(
-      "glass p-4 rounded-xl flex flex-col items-center gap-2 transition-all duration-500 border border-white/5 group shadow-lg",
-      color === "cyan" ? "hover:neon-glow-cyan" : color === "purple" ? "hover:neon-glow-purple" : color === "magenta" ? "hover:neon-glow-magenta" : "hover:neon-glow-blue"
+      "h-12 w-12 glass rounded-xl flex items-center justify-center transition-all duration-500 border border-white/5 text-muted-foreground hover:text-white",
+      color === "cyan" ? "hover:neon-glow-cyan hover:border-cyan-500/30" : 
+      color === "purple" ? "hover:neon-glow-purple hover:border-purple-500/30" : 
+      "hover:border-pink-500/30 shadow-[0_0_15px_rgba(236,72,153,0.1)] hover:shadow-[0_0_20px_rgba(236,72,153,0.2)]"
     )}
   >
-    <div className="text-muted-foreground group-hover:text-white transition-colors">
-      {icon}
-    </div>
-    <span className="text-[8px] font-bold uppercase tracking-wider opacity-30 group-hover:opacity-100 transition-opacity duration-300">
-      {label}
-    </span>
+    {icon}
   </motion.a>
 );

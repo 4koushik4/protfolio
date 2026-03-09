@@ -9,14 +9,14 @@ interface LayoutProps {
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="relative min-h-screen overflow-x-hidden selection:bg-primary/80 selection:text-primary-foreground">
+    <div className="relative min-h-screen overflow-x-hidden selection:bg-[#00ffff]/30 selection:text-white">
       <BackgroundEffects />
       <Navbar />
       <motion.main
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-        className="relative z-10 pt-20"
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="relative z-10 pt-16 md:pt-24"
       >
         {children}
       </motion.main>
