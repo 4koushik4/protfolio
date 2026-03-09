@@ -3,8 +3,13 @@ import { PortfolioData, initialData } from "@shared/portfolio-data";
 
 export const usePortfolio = () => {
   const [data, setData] = useState<PortfolioData>(() => {
-    const saved = localStorage.getItem("portfolio_data");
-    return saved ? JSON.parse(saved) : initialData;
+    try {
+      const saved = localStorage.getItem("portfolio_data");
+      return saved ? JSON.parse(saved) : initialData;
+    } catch (error) {
+      console.error("Error parsing portfolio data:", error);
+      return initialData;
+    }
   });
 
   const [isAdminOpen, setIsAdminOpen] = useState(false);
