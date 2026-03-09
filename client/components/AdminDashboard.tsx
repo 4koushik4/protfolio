@@ -109,6 +109,7 @@ const ProfileEditor = ({ data, setData }: { data: PortfolioData; setData: (d: Po
     <InputField label="Location" value={data.profile.location} onChange={(v) => setData({...data, profile: {...data.profile, location: v}})} />
     <InputField label="GitHub URL" value={data.profile.github} onChange={(v) => setData({...data, profile: {...data.profile, github: v}})} />
     <InputField label="LinkedIn URL" value={data.profile.linkedin} onChange={(v) => setData({...data, profile: {...data.profile, linkedin: v}})} />
+    <InputField label="Telegram" value={data.profile.telegram} onChange={(v) => setData({...data, profile: {...data.profile, telegram: v}})} />
     <div className="md:col-span-2">
       <label className="block text-[9px] font-black uppercase tracking-[0.3em] mb-2 text-[#a855f7] ml-1">Kernel_Intro</label>
       <textarea

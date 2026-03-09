@@ -81,7 +81,7 @@ export const initialData: PortfolioData = {
     phone: "+91-7396098014",
     github: "https://github.com/4koushik4",
     linkedin: "https://linkedin.com/in/4koushik4",
-    telegram: "KOUSHIKJULURI",
+    telegram: "KOUSHIK JULURI",
     location: "Hyderabad, India",
   },
   education: [
