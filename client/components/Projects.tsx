@@ -15,27 +15,25 @@ export const ProjectsSection = ({ projects }: { projects: any[] }) => {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         {projects.map((project, i) => (
-          <Card key={i} hoverGlow={i % 2 === 0 ? "pink" : "orange"} className="p-0 overflow-hidden flex flex-col group">
-            <div className={cn("h-64 relative overflow-hidden flex items-center justify-center bg-gradient-to-br", project.color)}>
-               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-1000 z-10 pointer-events-none" />
+          <Card key={i} hoverGlow={i % 2 === 0 ? "pink" : "orange"} className="p-0 overflow-hidden flex flex-col group transition-all duration-700 hover:translate-y-[-8px]">
+            <div className={cn("preview-container bg-gradient-to-br", project.color)}>
+               <div className="preview-glow" />
+               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-all duration-1000 z-10 pointer-events-none" />
 
                {project.link ? (
-                 <div className="absolute inset-0 w-full h-full flex items-start justify-center pointer-events-none">
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 1 }}
-                      className="w-full h-full flex items-start justify-center overflow-hidden"
-                    >
-                       <iframe
-                         src={project.link}
-                         className="w-[1920px] h-[1080px] border-none pointer-events-none opacity-30 group-hover:opacity-100 transition-opacity duration-1000"
-                         style={{ transform: 'scale(0.35)', transformOrigin: 'top center' }}
-                         title={project.title}
-                         loading="lazy"
-                       />
-                    </motion.div>
-                 </div>
+                 <motion.div
+                   initial={{ opacity: 0 }}
+                   animate={{ opacity: 1 }}
+                   transition={{ duration: 1 }}
+                   className="w-full h-full flex items-center justify-center overflow-hidden animate-float-slow"
+                 >
+                   <iframe
+                     src={project.link}
+                     className="preview-iframe group-hover:scale-[0.85] scale-[0.75]"
+                     title={project.title}
+                     loading="lazy"
+                   />
+                 </motion.div>
                ) : (
                  <motion.div
                    whileHover={{ scale: 1.2, rotate: 10 }}

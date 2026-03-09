@@ -114,53 +114,46 @@
     @apply scale-[1.05] shadow-[0_8px_25px_rgba(236,72,153,0.5)];
   }
 
-  /* ── Animations ── */
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-  }
-
-  .animate-pulse-subtle {
-    animation: pulse-subtle 4s ease-in-out infinite;
-  }
-  @keyframes pulse-subtle {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 0.8; }
-  }
-
-  .link-underline {
-    position: relative;
-  }
-  .link-underline::after {
-    content: "";
+  /* ── Project Preview ── */
+  .preview-glow {
     position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #00ffff, #a855f7);
-    transition: width 0.3s ease;
+    inset: -10%;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, transparent 60%);
+    filter: blur(20px);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1s ease;
   }
-  .link-underline:hover::after {
-    width: 100%;
+  .group:hover .preview-glow {
+    opacity: 1;
   }
 
-  /* ── Custom Scrollbar ── */
-  ::-webkit-scrollbar {
-    width: 8px;
+  .preview-container {
+    @apply relative h-64 overflow-hidden flex items-center justify-center;
   }
-  ::-webkit-scrollbar-track {
-    background: #05050a;
+
+  .preview-iframe {
+    width: 375px; /* Mobile width */
+    height: 812px; /* Mobile height */
+    border: none;
+    pointer-events: none;
+    transform-origin: center;
+    transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1), opacity 1s ease;
+    @apply opacity-40;
   }
-  ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, rgba(0, 255, 255, 0.2), rgba(168, 85, 247, 0.2));
-    border-radius: 10px;
+
+  .group:hover .preview-iframe {
+    @apply opacity-100;
   }
-  ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, rgba(0, 255, 255, 0.4), rgba(168, 85, 247, 0.4));
+
+  .animate-float-slow {
+    animation: float-slow 10s ease-in-out infinite;
+  }
+  @keyframes float-slow {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(1%, -2%) rotate(0.5deg); }
+    66% { transform: translate(-1%, -1%) rotate(-0.5deg); }
   }
 }
 
