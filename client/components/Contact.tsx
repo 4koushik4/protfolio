@@ -15,8 +15,8 @@ export const ContactSection = ({ profile }: { profile: any }) => {
     },
     {
       name: "Telegram",
-      value: `@${profile.telegram.toLowerCase()}`,
-      href: `https://t.me/${profile.telegram.toLowerCase()}`,
+      value: profile.telegram,
+      href: `https://t.me/${profile.telegram.replace(/\s+/g, '').toLowerCase()}`,
       icon: <Send size={32} />,
       color: "purple",
       desc: "Fastest response time"

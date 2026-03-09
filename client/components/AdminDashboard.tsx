@@ -3,20 +3,24 @@ import { useState } from "react";
 import { X, Save, LogOut, ChevronRight, Edit3, Plus, Trash2 } from "lucide-react";
 import { PortfolioData } from "@shared/portfolio-data";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
 interface AdminDashboardProps {
   data: PortfolioData;
   onUpdate: (data: PortfolioData) => void;
   onLogout: () => void;
+  onClose: () => void;
 }
 
-export const AdminDashboard = ({ data, onUpdate, onLogout }: AdminDashboardProps) => {
+export const AdminDashboard = ({ data, onUpdate, onLogout, onClose }: AdminDashboardProps) => {
   const [editedData, setEditedData] = useState<PortfolioData>(data);
   const [activeTab, setActiveTab] = useState<string>("profile");
 
   const handleSave = () => {
     onUpdate(editedData);
-    alert("Portfolio updated successfully!");
+    toast.success("System Update Successful", {
+      description: "Portfolio parameters have been recalibrated dynamically."
+    });
   };
 
   const tabs = [
@@ -45,6 +49,12 @@ export const AdminDashboard = ({ data, onUpdate, onLogout }: AdminDashboardProps
             className="btn-primary-gradient px-6 py-2.5 text-xs uppercase tracking-[0.2em] font-black flex items-center gap-3"
           >
             <Save size={16} /> Deploy_Update
+          </button>
+          <button
+            onClick={onClose}
+            className="h-10 w-10 glass rounded-xl flex items-center justify-center text-muted-foreground hover:text-[#00ffff] transition-all border-white/10"
+          >
+            <X size={20} />
           </button>
           <button
             onClick={onLogout}
@@ -109,6 +119,7 @@ const ProfileEditor = ({ data, setData }: { data: PortfolioData; setData: (d: Po
     <InputField label="Location" value={data.profile.location} onChange={(v) => setData({...data, profile: {...data.profile, location: v}})} />
     <InputField label="GitHub URL" value={data.profile.github} onChange={(v) => setData({...data, profile: {...data.profile, github: v}})} />
     <InputField label="LinkedIn URL" value={data.profile.linkedin} onChange={(v) => setData({...data, profile: {...data.profile, linkedin: v}})} />
+    <InputField label="Telegram" value={data.profile.telegram} onChange={(v) => setData({...data, profile: {...data.profile, telegram: v}})} />
     <div className="md:col-span-2">
       <label className="block text-[9px] font-black uppercase tracking-[0.3em] mb-2 text-[#a855f7] ml-1">Kernel_Intro</label>
       <textarea
@@ -210,7 +221,7 @@ const ProjectsEditor = ({ data, setData }: { data: PortfolioData; setData: (d: P
     setData({...data, projects: arr});
   };
   const remove = (idx: number) => setData({...data, projects: data.projects.filter((_, i) => i !== idx)});
-  const add = () => setData({...data, projects: [...data.projects, { id: crypto.randomUUID(), title: "", desc: "", features: [], tags: [], github: "", color: "from-blue-500/20 to-cyan-500/20", neon: "neon-glow-blue" }]});
+  const add = () => setData({...data, projects: [...data.projects, { id: crypto.randomUUID(), title: "", desc: "", features: [], tags: [], github: "", link: "", color: "from-blue-500/20 to-cyan-500/20", neon: "neon-glow-blue" }]});
 
   return (
     <div className="space-y-4">
@@ -219,6 +230,7 @@ const ProjectsEditor = ({ data, setData }: { data: PortfolioData; setData: (d: P
           <div className="grid grid-cols-2 gap-3">
             <InputField label="Title" value={project.title} onChange={(v) => update(idx, "title", v)} />
             <InputField label="GitHub URL" value={project.github} onChange={(v) => update(idx, "github", v)} />
+            <InputField label="Live Demo URL" value={project.link || ""} onChange={(v) => update(idx, "link", v)} />
             <div className="col-span-2">
               <InputField label="Description" value={project.desc} onChange={(v) => update(idx, "desc", v)} />
             </div>

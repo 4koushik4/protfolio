@@ -43,38 +43,40 @@ export default function Index() {
         animate={{ opacity: isLoaded ? 1 : 0 }}
         transition={{ duration: 0.8 }}
       >
-        <Layout>
-          <Hero data={data.profile} />
-          
-          <SectionWrapper id="about">
-            <About data={data.profile} />
-          </SectionWrapper>
+        {!isLoggedIn || !isAdminOpen ? (
+          <Layout>
+            <Hero data={data.profile} />
 
-          <SectionWrapper id="skills">
-            <SkillsSection categories={data.skillCategories} />
-          </SectionWrapper>
+            <SectionWrapper id="about">
+              <About data={data.profile} />
+            </SectionWrapper>
 
-          <SectionWrapper id="projects">
-            <ProjectsSection projects={data.projects} />
-          </SectionWrapper>
+            <SectionWrapper id="skills">
+              <SkillsSection categories={data.skillCategories} />
+            </SectionWrapper>
 
-          <SectionWrapper id="experience">
-            <ExperienceSection internships={data.internships} />
-          </SectionWrapper>
+            <SectionWrapper id="projects">
+              <ProjectsSection projects={data.projects} />
+            </SectionWrapper>
 
-          <SectionWrapper id="contact">
-            <ContactSection profile={data.profile} />
-          </SectionWrapper>
+            <SectionWrapper id="experience">
+              <ExperienceSection internships={data.internships} />
+            </SectionWrapper>
 
-          <AnimatePresence>
-            {isAdminOpen && !isLoggedIn && (
-              <LoginModal onLogin={login} onClose={() => setIsAdminOpen(false)} />
-            )}
-            {isAdminOpen && isLoggedIn && (
-              <AdminDashboard data={data} onUpdate={updateData} onLogout={logout} />
-            )}
-          </AnimatePresence>
-        </Layout>
+            <SectionWrapper id="contact">
+              <ContactSection profile={data.profile} />
+            </SectionWrapper>
+          </Layout>
+        ) : null}
+
+        <AnimatePresence>
+          {isAdminOpen && !isLoggedIn && (
+            <LoginModal onLogin={login} onClose={() => setIsAdminOpen(false)} />
+          )}
+          {isAdminOpen && isLoggedIn && (
+            <AdminDashboard data={data} onUpdate={updateData} onLogout={logout} onClose={() => setIsAdminOpen(false)} />
+          )}
+        </AnimatePresence>
       </motion.div>
     </div>
   );
