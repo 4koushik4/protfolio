@@ -22,18 +22,18 @@ export const ProjectsSection = ({ projects }: { projects: any[] }) => {
 
                {project.link ? (
                  <motion.div
-                   initial={{ opacity: 0 }}
-                   animate={{ opacity: 1 }}
-                   transition={{ duration: 1 }}
-                   className="w-full h-full flex items-center justify-center overflow-hidden animate-float-slow"
-                 >
-                   <iframe
-                     src={project.link}
-                     className="preview-iframe group-hover:scale-[0.85] scale-[0.75]"
-                     title={project.title}
-                     loading="lazy"
-                   />
-                 </motion.div>
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 1 }}
+  className="relative w-full h-[420px] overflow-hidden rounded-xl"
+>
+  <iframe
+    src={project.link}
+    title={project.title}
+    loading="lazy"
+    className="absolute inset-0 w-full h-full border-0 transform scale-[1] group-hover:scale-[1.05] transition-transform duration-700"
+  />
+</motion.div>
                ) : (
                  <motion.div
                    whileHover={{ scale: 1.2, rotate: 10 }}
