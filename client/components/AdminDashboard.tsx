@@ -3,20 +3,24 @@ import { useState } from "react";
 import { X, Save, LogOut, ChevronRight, Edit3, Plus, Trash2 } from "lucide-react";
 import { PortfolioData } from "@shared/portfolio-data";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
 interface AdminDashboardProps {
   data: PortfolioData;
   onUpdate: (data: PortfolioData) => void;
   onLogout: () => void;
+  onClose: () => void;
 }
 
-export const AdminDashboard = ({ data, onUpdate, onLogout }: AdminDashboardProps) => {
+export const AdminDashboard = ({ data, onUpdate, onLogout, onClose }: AdminDashboardProps) => {
   const [editedData, setEditedData] = useState<PortfolioData>(data);
   const [activeTab, setActiveTab] = useState<string>("profile");
 
   const handleSave = () => {
     onUpdate(editedData);
-    alert("Portfolio updated successfully!");
+    toast.success("System Update Successful", {
+      description: "Portfolio parameters have been recalibrated dynamically."
+    });
   };
 
   const tabs = [
@@ -45,6 +49,12 @@ export const AdminDashboard = ({ data, onUpdate, onLogout }: AdminDashboardProps
             className="btn-primary-gradient px-6 py-2.5 text-xs uppercase tracking-[0.2em] font-black flex items-center gap-3"
           >
             <Save size={16} /> Deploy_Update
+          </button>
+          <button
+            onClick={onClose}
+            className="h-10 w-10 glass rounded-xl flex items-center justify-center text-muted-foreground hover:text-[#00ffff] transition-all border-white/10"
+          >
+            <X size={20} />
           </button>
           <button
             onClick={onLogout}
