@@ -25,16 +25,14 @@ export const ProjectsSection = ({ projects }: { projects: any[] }) => {
   initial={{ opacity: 0 }}
   animate={{ opacity: 1 }}
   transition={{ duration: 1 }}
-  className="relative w-full h-[360px] overflow-hidden rounded-xl"
+  className="relative w-full h-[520px] overflow-hidden rounded-xl"
 >
-  <div className="absolute top-0 left-1/2 -translate-x-1/2 origin-top scale-[0.55] w-[1200px] h-[650px]">
-    <iframe
-      src={project.link}
-      title={project.title}
-      loading="lazy"
-      className="w-full h-full border-0"
-    />
-  </div>
+  <iframe
+    src={project.link}
+    title={project.title}
+    loading="lazy"
+    className="absolute top-0 left-0 w-full h-full border-0"
+  />
 </motion.div>
                ) : (
                  <motion.div
