@@ -21,18 +21,18 @@ export const ProjectsSection = ({ projects }: { projects: any[] }) => {
                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-all duration-1000 z-10 pointer-events-none" />
 
                {project.link ? (
-                 <motion.div
+                 <<motion.div
   initial={{ opacity: 0 }}
   animate={{ opacity: 1 }}
   transition={{ duration: 1 }}
-  className="w-full h-[420px] overflow-hidden flex items-center justify-center"
+  className="relative w-full h-[420px] overflow-hidden flex items-center justify-center"
 >
-  <div className="w-[1400px] h-[900px] scale-[0.5] origin-top">
+  <div className="origin-top scale-[0.45] w-[1400px] h-[900px]">
     <iframe
       src={project.link}
       title={project.title}
       loading="lazy"
-      className="w-full h-full border-0"
+      className="w-full h-full border-0 rounded-lg"
     />
   </div>
 </motion.div>
