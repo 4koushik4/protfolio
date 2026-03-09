@@ -27,7 +27,7 @@ export const ProjectsSection = ({ projects }: { projects: any[] }) => {
   transition={{ duration: 1 }}
   className="relative w-full h-[360px] overflow-hidden rounded-xl"
 >
-  <div className="absolute top-0 left-1/2 -translate-x-1/2 origin-top scale-[0.4] w-[1440px] h-[900px]">
+  <div className="absolute top-0 left-1/2 -translate-x-1/2 origin-top scale-[0.55] w-[1200px] h-[650px]">
     <iframe
       src={project.link}
       title={project.title}
