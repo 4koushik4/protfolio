@@ -4,47 +4,52 @@ import { useMemo } from "react";
 export const BackgroundEffects = () => {
   const particles = useMemo(() => {
     const colors = ["#00ffff", "#a855f7", "#ec4899", "#3b82f6", "#ff8a00"];
-    return Array.from({ length: 30 }).map((_, i) => ({
+    return Array.from({ length: 20 }).map((_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 3 + 1,
+      size: Math.random() * 2 + 1,
       color: colors[Math.floor(Math.random() * colors.length)],
-      duration: Math.random() * 20 + 15,
+      duration: Math.random() * 25 + 20,
       delay: Math.random() * 5,
     }));
   }, []);
 
   const { scrollYProgress } = useScroll();
-  const parallaxY = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const parallaxY = useTransform(scrollYProgress, [0, 1], [0, -150]);
 
   return (
-    <div className="fixed inset-0 -z-50 overflow-hidden pointer-events-none">
-      {/* 1. Dynamic Gradient Mesh Background */}
-      <div className="absolute inset-0 bg-vibrant-mesh opacity-90" />
+    <div className="fixed inset-0 -z-50 overflow-hidden pointer-events-none bg-[#05050a]">
+      {/* 1. Futuristic Mesh Background */}
+      <div className="absolute inset-0 bg-futuristic-mesh opacity-80" />
 
-      {/* 2. Floating Gradient Blobs (soft glow shapes) */}
-      <GradientBlob x="10%" y="10%" size="600px" color="rgba(0, 198, 255, 0.2)" duration={25} />
-      <GradientBlob x="70%" y="20%" size="500px" color="rgba(168, 85, 247, 0.15)" duration={30} />
-      <GradientBlob x="30%" y="70%" size="550px" color="rgba(236, 72, 153, 0.15)" duration={35} />
-      <GradientBlob x="80%" y="80%" size="450px" color="rgba(255, 138, 0, 0.12)" duration={28} />
-      <GradientBlob x="-5%" y="40%" size="400px" color="rgba(0, 255, 234, 0.1)" duration={22} />
+      {/* 2. Soft Floating Shapes */}
+      <GradientBlob x="5%" y="15%" size="600px" color="rgba(0, 198, 255, 0.1)" duration={30} />
+      <GradientBlob x="75%" y="10%" size="500px" color="rgba(168, 85, 247, 0.08)" duration={35} />
+      <GradientBlob x="40%" y="65%" size="550px" color="rgba(236, 72, 153, 0.08)" duration={40} />
+      <GradientBlob x="85%" y="80%" size="450px" color="rgba(255, 138, 0, 0.06)" duration={32} />
 
-      {/* 3. Aurora Light Streaks */}
-      <div className="aurora-container opacity-40">
-        <div className="aurora-streak top-[10%] left-[-20%] bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent" style={{ animationDelay: '0s' }} />
-        <div className="aurora-streak top-[40%] left-[-50%] bg-gradient-to-r from-transparent via-purple-400/15 to-transparent" style={{ animationDelay: '-10s' }} />
-        <div className="aurora-streak top-[70%] left-[-30%] bg-gradient-to-r from-transparent via-pink-400/15 to-transparent" style={{ animationDelay: '-20s' }} />
-      </div>
-
-      {/* 4. Background Textures (Parallax Wave/Grid) */}
+      {/* 3. Tech Grid Pattern */}
       <motion.div 
         style={{ y: parallaxY }}
-        className="absolute inset-0 opacity-[0.03] bg-cyber-grid"
+        className="absolute inset-0 tech-grid opacity-[0.05]"
       />
-      <div className="absolute inset-0 opacity-[0.05] bg-wave-pattern" />
 
-      {/* 5. Colorful Twinkling Particles */}
+      {/* 4. Layered Lighting (Subtle Aurora) */}
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div
+          animate={{ x: ["-50%", "150%"], opacity: [0, 0.1, 0] }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute top-[20%] w-[100%] h-[2px] bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent blur-[1px]"
+        />
+        <motion.div
+          animate={{ x: ["150%", "-50%"], opacity: [0, 0.08, 0] }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear", delay: 10 }}
+          className="absolute top-[60%] w-[100%] h-[2px] bg-gradient-to-r from-transparent via-purple-500/20 to-transparent blur-[1px]"
+        />
+      </div>
+
+      {/* 5. Slow Moving Light Particles */}
       {particles.map((p) => (
         <motion.div
           key={p.id}
@@ -55,13 +60,13 @@ export const BackgroundEffects = () => {
             width: p.size,
             height: p.size,
             backgroundColor: p.color,
-            boxShadow: `0 0 ${p.size * 6}px ${p.color}`,
+            boxShadow: `0 0 ${p.size * 8}px ${p.color}`,
           }}
           animate={{
-            y: [0, -40, 0],
-            x: [0, Math.random() * 20 - 10, 0],
-            opacity: [0.3, 0.8, 0.3],
-            scale: [1, 1.5, 1],
+            y: [0, -100, 0],
+            x: [0, Math.random() * 50 - 25, 0],
+            opacity: [0.1, 0.4, 0.1],
+            scale: [1, 1.4, 1],
           }}
           transition={{
             duration: p.duration,
@@ -72,8 +77,8 @@ export const BackgroundEffects = () => {
         />
       ))}
 
-      {/* Subtle vignettes to keep focus on content */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(15,12,41,0.5)_100%)]" />
+      {/* Final depth layer */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(5,5,10,0.6)_100%)]" />
     </div>
   );
 };
@@ -83,9 +88,9 @@ const GradientBlob = ({ x, y, size, color, duration }: {
 }) => (
   <motion.div
     animate={{
-      x: [0, 40, -30, 0],
-      y: [0, -30, 40, 0],
-      scale: [1, 1.2, 0.8, 1],
+      x: [0, 50, -40, 0],
+      y: [0, -40, 50, 0],
+      scale: [1, 1.1, 0.9, 1],
     }}
     transition={{ duration, repeat: Infinity, ease: "easeInOut" }}
     className="absolute rounded-full blur-[120px] pointer-events-none will-change-transform"
@@ -95,5 +100,3 @@ const GradientBlob = ({ x, y, size, color, duration }: {
     }}
   />
 );
-
-export const CustomCursor = () => null;

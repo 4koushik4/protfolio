@@ -31,63 +31,67 @@ export const AdminDashboard = ({ data, onUpdate, onLogout }: AdminDashboardProps
   ];
 
   return (
-    <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex flex-col overflow-hidden">
-      <header className="p-4 border-b border-white/10 flex items-center justify-between glass">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center border border-primary/50">
-            <Edit3 className="w-4 h-4 text-primary" />
+    <div className="fixed inset-0 z-[110] bg-[#05050a]/98 backdrop-blur-[24px] flex flex-col overflow-hidden">
+      <header className="p-5 border-b border-white/[0.08] flex items-center justify-between glass-premium">
+        <div className="flex items-center gap-4">
+          <div className="w-10 h-10 rounded-xl bg-[#00ffff]/10 flex items-center justify-center border border-[#00ffff]/30 shadow-[0_0_15px_rgba(0,255,255,0.1)]">
+            <Edit3 size={20} className="text-[#00ffff]" />
           </div>
-          <h2 className="text-xl font-bold font-orbitron neon-text">ADMIN PANEL</h2>
+          <h2 className="text-xl font-black font-orbitron text-white uppercase tracking-tighter">System_Console</h2>
         </div>
-        <div className="flex items-center gap-3">
-          <button 
+        <div className="flex items-center gap-4">
+          <button
             onClick={handleSave}
-            className="px-5 py-2 bg-primary text-primary-foreground rounded-full font-bold uppercase tracking-wider text-xs hover:neon-glow-cyan transition-all flex items-center gap-2"
+            className="btn-primary-gradient px-6 py-2.5 text-xs uppercase tracking-[0.2em] font-black flex items-center gap-3"
           >
-            <Save className="w-4 h-4" /> Save
+            <Save size={16} /> Deploy_Update
           </button>
-          <button 
+          <button
             onClick={onLogout}
-            className="p-2 glass rounded-full hover:text-accent transition-colors"
+            className="h-10 w-10 glass rounded-xl flex items-center justify-center text-muted-foreground hover:text-red-400 transition-all border-white/10 hover:border-red-500/30"
           >
-            <LogOut className="w-5 h-5" />
+            <LogOut size={20} />
           </button>
         </div>
       </header>
 
       <div className="flex flex-1 overflow-hidden">
-        <nav className="w-56 border-r border-white/10 p-4 space-y-1 bg-white/5 overflow-y-auto">
+        <nav className="w-64 border-r border-white/10 p-6 space-y-2 bg-white/[0.01] overflow-y-auto">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={cn(
-                "w-full text-left px-3 py-2.5 rounded-lg font-bold uppercase tracking-wider text-xs transition-all flex items-center justify-between group",
-                activeTab === tab.id 
-                  ? "bg-primary text-primary-foreground" 
-                  : "hover:bg-white/10 text-muted-foreground"
+                "w-full text-left px-4 py-3.5 rounded-xl font-black uppercase tracking-[0.15em] text-[10px] transition-all flex items-center justify-between group",
+                activeTab === tab.id
+                  ? "bg-gradient-to-r from-[#00ffff] to-[#0072ff] text-white shadow-[0_4px_15px_rgba(0,198,255,0.3)]"
+                  : "hover:bg-white/5 text-muted-foreground/60 hover:text-white"
               )}
             >
               {tab.label}
-              <ChevronRight className={cn("w-3 h-3 transition-transform", activeTab === tab.id ? "translate-x-0.5" : "opacity-0")} />
+              <ChevronRight size={14} className={cn("transition-transform", activeTab === tab.id ? "translate-x-1" : "opacity-0")} />
             </button>
           ))}
         </nav>
 
-        <main className="flex-1 p-8 overflow-y-auto">
-          <div className="max-w-4xl mx-auto space-y-6">
-            <h3 className="text-2xl font-bold font-orbitron mb-6 uppercase tracking-wider border-l-4 border-primary pl-4">
-              Edit {tabs.find(t => t.id === activeTab)?.label}
+        <main className="flex-1 p-10 overflow-y-auto relative">
+          <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-[radial-gradient(circle,rgba(0,255,255,0.05)_0%,transparent_70%)] blur-[100px] -z-10" />
+          <div className="max-w-4xl mx-auto">
+            <h3 className="text-3xl font-black font-orbitron mb-10 uppercase tracking-tighter text-white border-l-4 border-[#00ffff] pl-6">
+              Update {tabs.find(t => t.id === activeTab)?.label}_Node
             </h3>
 
-            {activeTab === "profile" && <ProfileEditor data={editedData} setData={setEditedData} />}
-            {activeTab === "education" && <EducationEditor data={editedData} setData={setEditedData} />}
-            {activeTab === "skillCategories" && <SkillsEditor data={editedData} setData={setEditedData} />}
-            {activeTab === "projects" && <ProjectsEditor data={editedData} setData={setEditedData} />}
-            {activeTab === "internships" && <ExperienceEditor data={editedData} setData={setEditedData} />}
-            {activeTab === "certifications" && <CertificationsEditor data={editedData} setData={setEditedData} />}
-            {activeTab === "achievements" && <AchievementsEditor data={editedData} setData={setEditedData} />}
-            {activeTab === "codingProfiles" && <CodingProfilesEditor data={editedData} setData={setEditedData} />}
+            <div className="glass-premium p-10 rounded-3xl border-white/5 relative overflow-hidden">
+               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#00ffff] via-[#a855f7] to-[#ff00cc] opacity-30" />
+               {activeTab === "profile" && <ProfileEditor data={editedData} setData={setEditedData} />}
+               {activeTab === "education" && <EducationEditor data={editedData} setData={setEditedData} />}
+               {activeTab === "skillCategories" && <SkillsEditor data={editedData} setData={setEditedData} />}
+               {activeTab === "projects" && <ProjectsEditor data={editedData} setData={setEditedData} />}
+               {activeTab === "internships" && <ExperienceEditor data={editedData} setData={setEditedData} />}
+               {activeTab === "certifications" && <CertificationsEditor data={editedData} setData={setEditedData} />}
+               {activeTab === "achievements" && <AchievementsEditor data={editedData} setData={setEditedData} />}
+               {activeTab === "codingProfiles" && <CodingProfilesEditor data={editedData} setData={setEditedData} />}
+            </div>
           </div>
         </main>
       </div>
@@ -97,7 +101,7 @@ export const AdminDashboard = ({ data, onUpdate, onLogout }: AdminDashboardProps
 
 // ── Profile Editor ──
 const ProfileEditor = ({ data, setData }: { data: PortfolioData; setData: (d: PortfolioData) => void }) => (
-  <div className="grid grid-cols-2 gap-4">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
     <InputField label="Name" value={data.profile.name} onChange={(v) => setData({...data, profile: {...data.profile, name: v}})} />
     <InputField label="Tagline" value={data.profile.tagline} onChange={(v) => setData({...data, profile: {...data.profile, tagline: v}})} />
     <InputField label="Email" value={data.profile.email} onChange={(v) => setData({...data, profile: {...data.profile, email: v}})} />
@@ -105,10 +109,10 @@ const ProfileEditor = ({ data, setData }: { data: PortfolioData; setData: (d: Po
     <InputField label="Location" value={data.profile.location} onChange={(v) => setData({...data, profile: {...data.profile, location: v}})} />
     <InputField label="GitHub URL" value={data.profile.github} onChange={(v) => setData({...data, profile: {...data.profile, github: v}})} />
     <InputField label="LinkedIn URL" value={data.profile.linkedin} onChange={(v) => setData({...data, profile: {...data.profile, linkedin: v}})} />
-    <div className="col-span-2">
-      <label className="block text-xs font-bold uppercase tracking-wider mb-2 text-primary">Introduction</label>
-      <textarea 
-        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-primary outline-none min-h-[120px] text-sm"
+    <div className="md:col-span-2">
+      <label className="block text-[9px] font-black uppercase tracking-[0.3em] mb-2 text-[#a855f7] ml-1">Kernel_Intro</label>
+      <textarea
+        className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 focus:border-[#a855f7]/50 outline-none min-h-[150px] text-sm font-medium transition-all"
         value={data.profile.intro}
         onChange={(e) => setData({...data, profile: {...data.profile, intro: e.target.value}})}
       />
@@ -251,9 +255,9 @@ const ExperienceEditor = ({ data, setData }: { data: PortfolioData; setData: (d:
             <InputField label="Company" value={exp.company} onChange={(v) => update(idx, "company", v)} />
             <InputField label="Period" value={exp.period} onChange={(v) => update(idx, "period", v)} />
             <div className="col-span-2">
-              <label className="block text-xs font-bold uppercase tracking-wider mb-2 text-primary">Descriptions (one per line)</label>
-              <textarea 
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-primary outline-none min-h-[80px] text-sm"
+              <label className="block text-[9px] font-black uppercase tracking-[0.3em] mb-2 text-[#a855f7] ml-1">Logic_Chain (one per line)</label>
+              <textarea
+                className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 focus:border-[#a855f7]/50 outline-none min-h-[100px] text-sm font-medium transition-all"
                 value={exp.desc.join("\n")}
                 onChange={(e) => update(idx, "desc", e.target.value.split("\n").filter(Boolean))}
               />
@@ -344,26 +348,26 @@ const CodingProfilesEditor = ({ data, setData }: { data: PortfolioData; setData:
 
 // ── Shared Components ──
 const ItemCard = ({ children, onDelete }: { children: React.ReactNode; onDelete: () => void }) => (
-  <div className="glass-card p-5 rounded-xl border-white/10 relative group">
-    <button onClick={onDelete} className="absolute top-3 right-3 text-accent opacity-0 group-hover:opacity-100 transition-opacity hover:text-red-400">
-      <Trash2 className="w-4 h-4" />
+  <div className="glass-premium p-6 rounded-2xl border-white/10 relative group mb-4">
+    <button onClick={onDelete} className="absolute top-4 right-4 text-red-400 opacity-0 group-hover:opacity-100 transition-opacity hover:scale-125">
+      <Trash2 size={16} />
     </button>
     {children}
   </div>
 );
 
 const AddButton = ({ onClick, label }: { onClick: () => void; label: string }) => (
-  <button onClick={onClick} className="w-full py-3 border-2 border-dashed border-white/10 rounded-xl flex items-center justify-center gap-2 text-sm text-muted-foreground hover:border-primary hover:text-primary transition-all font-bold uppercase tracking-wider">
-    <Plus className="w-4 h-4" /> {label}
+  <button onClick={onClick} className="w-full py-4 border-2 border-dashed border-white/10 rounded-2xl flex items-center justify-center gap-3 text-xs font-black uppercase tracking-widest text-muted-foreground/60 hover:border-[#00ffff] hover:text-[#00ffff] transition-all bg-white/[0.01]">
+    <Plus size={16} /> {label}
   </button>
 );
 
 const InputField = ({ label, value, onChange }: { label: string; value: string; onChange: (v: string) => void }) => (
   <div>
-    <label className="block text-xs font-bold uppercase tracking-wider mb-1.5 text-primary">{label}</label>
-    <input 
-      type="text" 
-      className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2.5 focus:border-primary outline-none transition-colors text-sm"
+    <label className="block text-[9px] font-black uppercase tracking-[0.3em] mb-2 text-[#00ffff] ml-1">{label}</label>
+    <input
+      type="text"
+      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 focus:border-[#00ffff]/50 outline-none transition-all text-sm font-medium placeholder:text-white/5"
       value={value}
       onChange={(e) => onChange(e.target.value)}
     />
