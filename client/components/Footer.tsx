@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Github, Linkedin, Mail, Twitter, Code, ExternalLink } from "lucide-react";
+import { Github, Linkedin, Mail, Twitter, Code, ExternalLink, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const Footer = () => {
