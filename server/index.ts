@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
+import { getPortfolio, updatePortfolio } from "./routes/portfolio";
 
 export function createServer() {
   const app = express();
@@ -18,6 +19,8 @@ export function createServer() {
   });
 
   app.get("/api/demo", handleDemo);
+  app.get("/api/portfolio", getPortfolio);
+  app.post("/api/portfolio", updatePortfolio);
 
   return app;
 }
