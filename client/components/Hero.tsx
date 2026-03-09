@@ -45,7 +45,7 @@ export const Hero = ({ data }: { data: any }) => {
              Full-Stack Developer & AI Enthusiast
            </motion.span>
            
-           <h1 style={{ fontSize: 'clamp(3rem, 8vw, 6rem)' }} className="font-black mb-6 tracking-tighter leading-none">
+           <h1 style={{ fontSize: 'clamp(1.8rem, 7vw, 6rem)' }} className="font-black mb-6 tracking-tighter leading-none whitespace-nowrap overflow-visible">
              {letters.map((char: string, i: number) => (
                <motion.span
                  key={i}

@@ -70,8 +70,8 @@ export const Footer = () => {
         </div>
 
         <div className="pt-10 border-t border-white/[0.05] flex flex-col md:flex-row justify-between items-center gap-8">
-          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground text-center md:text-left">
-            © {currentYear} <span className="text-white">KOUSHIK JULURI</span> • ESTABLISHED IN THE MATRIX
+          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground text-center md:text-left whitespace-nowrap">
+            © {currentYear} <span className="text-white">JULURI BHAVANI KOUSHIK</span> • ESTABLISHED IN THE MATRIX
           </p>
           <div className="flex items-center gap-6">
             <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground flex items-center gap-3">
