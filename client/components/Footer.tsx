@@ -30,7 +30,7 @@ export const Footer = () => {
                  <img src="https://i.ibb.co/21mHj556/logo.png" alt="Logo" className="h-full w-full object-contain" />
               </div>
               <span className="font-orbitron text-xl font-black tracking-tighter text-gradient-futuristic uppercase">
-                KOUSHIK.JS
+                KOUSHIK
               </span>
             </Link>
             <p className="text-muted-foreground text-lg max-w-md leading-relaxed mb-10 font-medium">

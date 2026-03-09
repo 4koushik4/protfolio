@@ -74,7 +74,7 @@ export const Navbar = () => {
              />
           </div>
           <span className="font-orbitron text-xl font-black tracking-tighter text-gradient-futuristic uppercase transition-all duration-500 group-hover:tracking-widest">
-            KOUSHIK.JS
+            KOUSHIK
           </span>
         </Link>
 
