@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { X, Lock, Key, ShieldCheck, ShieldAlert } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface LoginModalProps {
   onLogin: (password: string) => boolean;
