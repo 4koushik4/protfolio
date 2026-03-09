@@ -21,7 +21,7 @@ export const ProjectsSection = ({ projects }: { projects: any[] }) => {
                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-all duration-1000 z-10 pointer-events-none" />
 
                {project.link ? (
-                 <<motion.div
+                 <motion.div
   initial={{ opacity: 0 }}
   animate={{ opacity: 1 }}
   transition={{ duration: 1 }}
