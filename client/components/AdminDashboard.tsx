@@ -211,7 +211,7 @@ const ProjectsEditor = ({ data, setData }: { data: PortfolioData; setData: (d: P
     setData({...data, projects: arr});
   };
   const remove = (idx: number) => setData({...data, projects: data.projects.filter((_, i) => i !== idx)});
-  const add = () => setData({...data, projects: [...data.projects, { id: crypto.randomUUID(), title: "", desc: "", features: [], tags: [], github: "", color: "from-blue-500/20 to-cyan-500/20", neon: "neon-glow-blue" }]});
+  const add = () => setData({...data, projects: [...data.projects, { id: crypto.randomUUID(), title: "", desc: "", features: [], tags: [], github: "", link: "", color: "from-blue-500/20 to-cyan-500/20", neon: "neon-glow-blue" }]});
 
   return (
     <div className="space-y-4">
@@ -220,6 +220,7 @@ const ProjectsEditor = ({ data, setData }: { data: PortfolioData; setData: (d: P
           <div className="grid grid-cols-2 gap-3">
             <InputField label="Title" value={project.title} onChange={(v) => update(idx, "title", v)} />
             <InputField label="GitHub URL" value={project.github} onChange={(v) => update(idx, "github", v)} />
+            <InputField label="Live Demo URL" value={project.link || ""} onChange={(v) => update(idx, "link", v)} />
             <div className="col-span-2">
               <InputField label="Description" value={project.desc} onChange={(v) => update(idx, "desc", v)} />
             </div>

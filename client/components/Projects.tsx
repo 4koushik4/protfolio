@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Code } from "lucide-react";
+import { Github, Code, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Card } from "./ui/PortfolioCard";
 
@@ -25,6 +25,11 @@ export const ProjectsSection = ({ projects }: { projects: any[] }) => {
                  <Code size={100} className="text-white/20 group-hover:text-white transition-all duration-700 drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]" />
                </motion.div>
                <div className="absolute top-8 right-8 flex gap-4 opacity-0 group-hover:opacity-100 transition-all translate-y-4 group-hover:translate-y-0 duration-500">
+                  {project.link && (
+                    <a href={project.link} target="_blank" className="h-12 w-12 glass rounded-2xl flex items-center justify-center hover:scale-110 transition-all text-white border border-white/20 hover:neon-glow-cyan">
+                      <ExternalLink size={20} />
+                    </a>
+                  )}
                   <a href={project.github} target="_blank" className="h-12 w-12 glass rounded-2xl flex items-center justify-center hover:scale-110 transition-all text-white border border-white/20">
                     <Github size={20} />
                   </a>
