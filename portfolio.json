@@ -1,0 +1,316 @@
+{
+  "profile": {
+    "name": "Juluri Bhavani Koushik",
+    "tagline": "Frontend Developer | AI & Web Innovator | CSE Student",
+    "intro": "Computer Science student passionate about building modern web applications, AI-powered tools, and scalable digital solutions. Skilled in React, Node.js, and full-stack development.",
+    "email": "juluribhavanikoushik@gmail.com",
+    "phone": "+91-7396098014",
+    "github": "https://github.com/4koushik4",
+    "linkedin": "https://linkedin.com/in/4koushik4",
+    "telegram": "KOUSHIK JULURI",
+    "location": "Hyderabad, India"
+  },
+  "education": [
+    {
+      "school": "Institute of Aeronautical Engineering, Hyderabad",
+      "degree": "B.Tech Computer Science and Engineering",
+      "period": "Aug 2023 – Sep 2027",
+      "cgpa": "8.59"
+    },
+    {
+      "school": "Narayana Junior College, Hyderabad",
+      "degree": "Intermediate (MPC)",
+      "period": "2021 - 2023",
+      "cgpa": "9.73"
+    },
+    {
+      "school": "Pioneers International School, Sangareddy",
+      "degree": "SSC",
+      "period": "2021",
+      "cgpa": "9.24"
+    }
+  ],
+  "skillCategories": [
+    {
+      "title": "Programming Languages",
+      "skills": [
+        {
+          "name": "Python",
+          "level": 85,
+          "color": "bg-blue-400"
+        },
+        {
+          "name": "Java",
+          "level": 90,
+          "color": "bg-red-500"
+        },
+        {
+          "name": "C",
+          "level": 80,
+          "color": "bg-gray-500"
+        },
+        {
+          "name": "JavaScript",
+          "level": 92,
+          "color": "bg-yellow-400"
+        }
+      ]
+    },
+    {
+      "title": "Frontend",
+      "skills": [
+        {
+          "name": "React.js",
+          "level": 95,
+          "color": "bg-cyan-400"
+        },
+        {
+          "name": "HTML",
+          "level": 98,
+          "color": "bg-orange-500"
+        },
+        {
+          "name": "CSS",
+          "level": 90,
+          "color": "bg-blue-500"
+        },
+        {
+          "name": "Tailwind CSS",
+          "level": 95,
+          "color": "bg-sky-400"
+        }
+      ]
+    },
+    {
+      "title": "Backend & DB",
+      "skills": [
+        {
+          "name": "Node.js",
+          "level": 85,
+          "color": "bg-green-500"
+        },
+        {
+          "name": "Express.js",
+          "level": 80,
+          "color": "bg-gray-400"
+        },
+        {
+          "name": "MySQL",
+          "level": 75,
+          "color": "bg-blue-600"
+        },
+        {
+          "name": "Flask API",
+          "level": 70,
+          "color": "bg-teal-500"
+        }
+      ]
+    },
+    {
+      "title": "Tools & Concepts",
+      "skills": [
+        {
+          "name": "Git",
+          "level": 88,
+          "color": "bg-orange-600"
+        },
+        {
+          "name": "Docker",
+          "level": 65,
+          "color": "bg-blue-500"
+        },
+        {
+          "name": "AWS",
+          "level": 60,
+          "color": "bg-yellow-600"
+        },
+        {
+          "name": "Data Structures",
+          "level": 85,
+          "color": "bg-purple-500"
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "1",
+      "title": "TaxSaathi",
+      "desc": "AI-powered GST filing assistant for small businesses.",
+      "features": [
+        "OCR invoice scanning",
+        "Automated GST calculations",
+        "Smart tax form generation",
+        "User dashboard"
+      ],
+      "tags": [
+        "React",
+        "Supabase",
+        "OCR",
+        "Node.js"
+      ],
+      "github": "https://github.com/4koushik4",
+      "link": "https://taxsathi.vercel.app/",
+      "color": "from-cyan-500/20 to-blue-500/20",
+      "neon": "neon-glow-cyan"
+    },
+    {
+      "id": "2",
+      "title": "ZenPDF",
+      "desc": "Advanced PDF tools platform.",
+      "features": [
+        "Merge PDFs",
+        "Split PDFs",
+        "Extract pages",
+        "Compress documents"
+      ],
+      "tags": [
+        "React",
+        "Python",
+        "Flask API"
+      ],
+      "github": "https://github.com/4koushik4",
+      "link": "https://zenpdf.vercel.app/",
+      "color": "from-purple-500/20 to-pink-500/20",
+      "neon": "neon-glow-purple"
+    },
+    {
+      "id": "3",
+      "title": "Quizen",
+      "desc": "Interactive quiz platform with real-time scoring.",
+      "features": [
+        "Dynamic quizzes",
+        "Leaderboard system",
+        "User analytics"
+      ],
+      "tags": [
+        "React",
+        "Node.js",
+        "Express"
+      ],
+      "github": "https://github.com/4koushik4",
+      "link": "https://quizen1.vercel.app/",
+      "color": "from-blue-500/20 to-indigo-500/20",
+      "neon": "neon-glow-blue"
+    },
+    {
+      "id": "4",
+      "title": "GreenTrace",
+      "desc": "Smart waste management system.",
+      "features": [
+        "Waste classification",
+        "QR scanning rewards",
+        "Recycling tracking"
+      ],
+      "tags": [
+        "React",
+        "Supabase",
+        "AI Models"
+      ],
+      "github": "https://github.com/4koushik4",
+      "link": "https://greentrace1.vercel.app/",
+      "color": "from-emerald-500/20 to-teal-500/20",
+      "neon": "neon-glow-green"
+    },
+    {
+      "id": "5",
+      "title": "Healthify",
+      "desc": "Healthcare monitoring web application.",
+      "features": [
+        "Health record tracking",
+        "Doctor appointments",
+        "Patient dashboard"
+      ],
+      "tags": [
+        "React",
+        "Node.js",
+        "PostgreSQL"
+      ],
+      "github": "https://github.com/4koushik4",
+      "color": "from-red-500/20 to-rose-500/20",
+      "neon": "neon-glow-red",
+      "link": "https://aihealthify.vercel.app/"
+    }
+  ],
+  "internships": [
+    {
+      "role": "Web Designing and Web Development Intern",
+      "company": "Miraki Technologies",
+      "period": "May 2025",
+      "desc": [
+        "Worked on full-stack development using React.js frontend and Flask API backend.",
+        "Improved professional skills including teamwork, communication, and time management."
+      ]
+    },
+    {
+      "role": "Java Full Stack Development Intern",
+      "company": "Common’s Collective",
+      "period": "Apr – May 2024",
+      "desc": [
+        "Worked with Java full stack technologies including Spring Boot and frontend development.",
+        "Developed backend and frontend features while collaborating in a professional development environment."
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Data Structures and Backend with Java",
+      "issuer": "Coursera"
+    },
+    {
+      "name": "Data Structure and Algorithm",
+      "issuer": "Coursera"
+    },
+    {
+      "name": "HTML CSS and JavaScript for Web Developers",
+      "issuer": "Coursera"
+    },
+    {
+      "name": "Java Gold Badge (5-Star)",
+      "issuer": "HackerRank"
+    },
+    {
+      "name": "Python Gold Badge (5-Star)",
+      "issuer": "HackerRank"
+    },
+    {
+      "name": "Problem Solving Intermediate",
+      "issuer": "HackerRank"
+    }
+  ],
+  "achievements": [
+    {
+      "title": "Java Gold Badge (5-Star)",
+      "desc": "Earned for solving complex Java problems on HackerRank."
+    },
+    {
+      "title": "Python Gold Badge (5-Star)",
+      "desc": "Recognized for high proficiency in Python programming."
+    },
+    {
+      "title": "Adobe Hackathon 2025",
+      "desc": "Participated and showcased innovative web solutions."
+    },
+    {
+      "title": "SQL Bronze Badge",
+      "desc": "Demonstrated fundamental knowledge in SQL databases."
+    }
+  ],
+  "codingProfiles": [
+    {
+      "name": "HackerRank",
+      "username": "4koushik4",
+      "solved": "500+ problems"
+    },
+    {
+      "name": "LeetCode",
+      "username": "4koushik4",
+      "solved": "50+ problems"
+    },
+    {
+      "name": "GeeksForGeeks",
+      "username": "4koushik4",
+      "solved": "50+ problems"
+    }
+  ]
+}

@@ -16,15 +16,36 @@ export const ProjectsSection = ({ projects }: { projects: any[] }) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         {projects.map((project, i) => (
           <Card key={i} hoverGlow={i % 2 === 0 ? "pink" : "orange"} className="p-0 overflow-hidden flex flex-col group">
-            <div className={cn("h-64 relative overflow-hidden flex items-center justify-center p-12 bg-gradient-to-br", project.color)}>
-               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-all duration-1000" />
-               <motion.div 
-                 whileHover={{ scale: 1.2, rotate: 10 }}
-                 className="relative z-10"
-               >
-                 <Code size={100} className="text-white/20 group-hover:text-white transition-all duration-700 drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]" />
-               </motion.div>
-               <div className="absolute top-8 right-8 flex gap-4 opacity-0 group-hover:opacity-100 transition-all translate-y-4 group-hover:translate-y-0 duration-500">
+            <div className={cn("h-64 relative overflow-hidden flex items-center justify-center bg-gradient-to-br", project.color)}>
+               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-1000 z-10 pointer-events-none" />
+
+               {project.link ? (
+                 <div className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none">
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 1 }}
+                      className="w-full h-full flex items-center justify-center overflow-hidden"
+                    >
+                       <iframe
+                         src={project.link}
+                         className="w-[1280px] h-[800px] border-none pointer-events-none opacity-40 group-hover:opacity-100 transition-opacity duration-1000"
+                         style={{ transform: 'scale(0.25)', transformOrigin: 'center' }}
+                         title={project.title}
+                         loading="lazy"
+                       />
+                    </motion.div>
+                 </div>
+               ) : (
+                 <motion.div
+                   whileHover={{ scale: 1.2, rotate: 10 }}
+                   className="relative z-10 p-12"
+                 >
+                   <Code size={100} className="text-white/20 group-hover:text-white transition-all duration-700 drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]" />
+                 </motion.div>
+               )}
+
+               <div className="absolute top-8 right-8 flex gap-4 opacity-0 group-hover:opacity-100 transition-all translate-y-4 group-hover:translate-y-0 duration-500 z-20">
                   {project.link && (
                     <a href={project.link} target="_blank" className="h-12 w-12 glass rounded-2xl flex items-center justify-center hover:scale-110 transition-all text-white border border-white/20 hover:neon-glow-cyan">
                       <ExternalLink size={20} />
